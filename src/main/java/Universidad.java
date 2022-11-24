@@ -25,8 +25,8 @@ public class Universidad {
 	public ArrayList<Profesor> obtenerProfesoresPorNombre(String nombre){
 		ArrayList<Profesor> profesoresConElMismoNombre=new ArrayList<>();
 		for(Facultad facultad:facultades) {
-			for(Departamento departamento:departamentos){
-				for (Profesor profesor : Departamento.getProfesores()) {
+			for(Departamento departamento: facultad.getDepartamentos()){
+				for (Profesor profesor : departamento.getProfesores()) {
 					if (profesor.getNombre().equals(nombre)) {
 						profesoresConElMismoNombre.add(profesor);
 					}
@@ -48,8 +48,10 @@ public class Universidad {
 
 	public ArrayList<Administrativo>ObtenerAdministrativos(){
 		ArrayList<Administrativo> administrativos=new ArrayList<Administrativo>();
+		Departamento departamento = new Departamento();
+
 		for(Trabajador trabajador:this.trabajadores){
-			if(Departamento.getAdministrativos().equals("Administrativo")){
+			if(departamento.getAdministrativos().equals("Administrativo")){
 				administrativos.add((Administrativo)trabajador);
 			}
 		}
@@ -58,8 +60,10 @@ public class Universidad {
 
 	public ArrayList<Profesor>ObtenerProfesores(){
 		ArrayList<Profesor>profesores=new ArrayList<>();
+		Departamento departamento = new Departamento();
+
 		for(Facultad facultad:this.facultades){
-			for(Profesor profesor:Departamento.getProfesores()){
+			for(Profesor profesor: departamento.getProfesores()){
 			}
 		}
 		return ObtenerProfesores();
@@ -67,11 +71,9 @@ public class Universidad {
 
 	public ArrayList<Profesor>obtenerProfesoresPorHorario(String horario){
 		ArrayList<Profesor>profesoresConElMismoHorario=new ArrayList<>();
-		for(Trabajador trabajadores:this.trabajadores) {
-			for (Profesor profesor : facultades.getProfesores()) {
-				if (profesor.getHorario().equals(horario)) {
-					profesoresConElMismoHorario.add(profesor);
-				}
+		for(Facultad facultad :this.facultades) {
+			if (profesor.getHorario().equals(horario)) {
+				profesoresConElMismoHorario.add(profesor);
 			}
 		}
 		return profesoresConElMismoHorario;
